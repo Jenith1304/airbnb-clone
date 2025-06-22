@@ -4,13 +4,15 @@
   "description": "API for airbnb clone app",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js"
+    "start": "nodemon api/index.js",
+    "dev":"nodemon api/index.js",
+    "build":"npm install && npm install --prefix client && npm run build --prefix client"
   },
   "keywords": [
     "api",
     "backend"
   ],
-  "author": "rahul4019",
+  "author": "Jenith1304",
   "license": "ISC",
   "dependencies": {
     "bcryptjs": "^2.4.3",

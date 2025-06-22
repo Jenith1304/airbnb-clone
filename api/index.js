@@ -5,6 +5,7 @@ const connectWithDB = require("./config/db");
 const cookieSession = require("cookie-session");
 const cookieParser = require("cookie-parser");
 const cloudinary = require("cloudinary").v2;
+const path = require("path");
 
 // connect with database
 connectWithDB();
@@ -45,9 +46,14 @@ app.use(
 );
 
 // use express router
-app.use("/", require("./routes"));
+app.use("/api", require("./routes"));
+// console.log(__dirname)
 
-app.listen(process.env.PORT || 8000, (err) => {
+app.use(express.static(path.join(__dirname, '../client/dist')));
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '../client/dist/index.html'));
+});
+app.listen(process.env.PORT || 4000, (err) => {
   if (err) {
     console.log("Error in connecting to server: ", err);
   }
